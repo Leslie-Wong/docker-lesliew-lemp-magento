@@ -1,0 +1,4 @@
+/vendor
+
+# Supervisor debug info
+src/bin/supervisor-debug.log

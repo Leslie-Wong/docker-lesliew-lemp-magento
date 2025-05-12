@@ -1,0 +1,52 @@
+version: "3.7"
+
+services:
+
+  nginx:
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    container_name: "LeslieW-nginx"
+    restart: always
+    ports:
+      - "80:80"
+      - "8080:8080"
+      - "2222:22"
+      - "443:443"
+      - "5001:5001"
+      - "5173:5173"
+      - "6001:6001"
+      - "8000:8000"
+    environment:
+      - NGINX_HOST=localhost
+      - cluster.name=opensearch-cluster # Name the cluster
+        privileged: true
+    networks:
+      - dev-network
+
+  mysql:
+    build:
+      context: ./docker/mysql
+      dockerfile: Dockerfile
+    container_name: "LeslieW-mysql"
+    restart: always
+    environment:
+      - MYSQL_DATABASE=leslie_w_db
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+        privileged: true
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./logs/mysql/:/var/log/mysql
+      - ./docker/mysql/conf.d:/etc/mysql/conf.d
+    ports:
+      - "3306:3306"
+    networks:
+      - dev-network
+      
+networks:
+  dev-network:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local

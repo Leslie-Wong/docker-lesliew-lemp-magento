@@ -1,0 +1,1 @@
+sudo -u www-data /opt/opensearch-2.19.1/opensearch-tar-install.sh
