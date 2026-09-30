@@ -20,7 +20,7 @@ services:
     environment:
       - NGINX_HOST=localhost
       - cluster.name=opensearch-cluster # Name the cluster
-        privileged: true
+      - privileged: true
     networks:
       - dev-network
 
