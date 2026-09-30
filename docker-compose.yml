@@ -20,7 +20,7 @@ services:
     environment:
       - NGINX_HOST=localhost
       - cluster.name=opensearch-cluster # Name the cluster
-      - privileged: true
+      - privileged= true
     networks:
       - dev-network
 
@@ -33,7 +33,7 @@ services:
     environment:
       - MYSQL_DATABASE=leslie_w_db
       - MYSQL_ALLOW_EMPTY_PASSWORD=1
-        privileged: true
+      - privileged=true
     volumes:
       - dbdata:/var/lib/mysql
       - ./logs/mysql/:/var/log/mysql
